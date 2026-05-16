@@ -53,7 +53,8 @@ html,
 body {
   margin: 0;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
+  overflow: hidden;
   background:
     radial-gradient(circle at top left, rgba(116,192,252,.18), transparent 34%),
     radial-gradient(circle at bottom right, rgba(177,151,252,.16), transparent 34%),
@@ -72,35 +73,31 @@ body {
 .app {
   width: 100%;
   max-width: 430px;
-  min-height: 100vh;
-  padding: max(12px, env(safe-area-inset-top)) 14px max(12px, env(safe-area-inset-bottom));
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+  padding: max(8px, env(safe-area-inset-top)) 14px max(8px, env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
-}
-
-.title-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
 }
 
 .title {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 950;
   line-height: 1;
   letter-spacing: -1px;
 }
 
 .subtitle {
-  font-size: 11px;
+  margin-top: 2px;
+  font-size: 10px;
   color: var(--muted);
   font-weight: 800;
 }
@@ -108,21 +105,21 @@ body {
 .stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 9px;
+  gap: 8px;
 }
 
 .stat {
-  min-height: 58px;
+  min-height: 50px;
   border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 10px 12px;
+  border-radius: 18px;
+  padding: 8px 10px;
   background: var(--panel);
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px);
 }
 
 .label {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
   font-weight: 900;
   text-transform: uppercase;
@@ -130,61 +127,62 @@ body {
 }
 
 .value {
-  margin-top: 4px;
-  font-size: 21px;
+  margin-top: 3px;
+  font-size: 20px;
   font-weight: 950;
   letter-spacing: -.5px;
 }
 
 .game-area {
   display: grid;
-  grid-template-columns: 1fr 96px;
-  gap: 10px;
-  align-items: start;
+  grid-template-columns: auto 92px;
+  gap: 8px;
+  align-items: stretch;
+  min-height: 0;
 }
 
 .board-card {
   position: relative;
   border: 1px solid var(--line);
-  border-radius: 28px;
+  border-radius: 26px;
   padding: 10px;
   background: var(--panel);
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px);
   overflow: hidden;
+  align-self: start;
 }
 
 canvas {
   display: block;
-  width: 100%;
 }
 
 #board {
-  aspect-ratio: 10 / 20;
-  border-radius: 20px;
+  border-radius: 18px;
   background: rgba(127,127,127,.06);
 }
 
 .side {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
+  min-height: 0;
 }
 
 .next-card,
 .info-card,
 .rotate-card {
   border: 1px solid var(--line);
-  border-radius: 22px;
-  padding: 10px;
+  border-radius: 20px;
+  padding: 9px;
   background: var(--panel);
   box-shadow: var(--shadow);
   backdrop-filter: blur(16px);
 }
 
 .next-title {
-  margin-bottom: 8px;
-  font-size: 11px;
+  margin-bottom: 6px;
+  font-size: 10px;
   color: var(--muted);
   font-weight: 950;
   letter-spacing: .5px;
@@ -194,38 +192,38 @@ canvas {
 #next {
   width: 100%;
   aspect-ratio: 1 / 1;
-  border-radius: 14px;
+  border-radius: 13px;
   background: rgba(127,127,127,.05);
 }
 
 .info-card {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
 }
 
 .small-btn {
-  height: 42px;
+  height: 38px;
   border: 1px solid var(--line);
-  border-radius: 15px;
+  border-radius: 14px;
   background: var(--button);
   color: var(--text);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 950;
 }
 
 .rotate-card {
-  margin-top: 128px;
+  margin-top: auto;
 }
 
 .rotate-side {
   width: 100%;
-  height: 76px;
+  height: 64px;
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: 17px;
   background: var(--button);
   color: var(--accent);
-  font-size: 34px;
+  font-size: 31px;
   font-weight: 950;
   user-select: none;
   touch-action: none;
@@ -234,13 +232,13 @@ canvas {
 .controls {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .move-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 8px;
 }
 
 .drop-row {
@@ -249,28 +247,29 @@ canvas {
 }
 
 .control {
-  height: 72px;
+  height: 58px;
   border: 1px solid var(--line);
-  border-radius: 24px;
+  border-radius: 22px;
   background: var(--button);
   color: var(--text);
   box-shadow: var(--shadow);
-  font-size: 36px;
+  font-size: 33px;
   font-weight: 950;
   user-select: none;
   touch-action: none;
 }
 
 .control.soft {
-  font-size: 15px;
-  line-height: 1.15;
+  height: 54px;
+  font-size: 14px;
+  line-height: 1.12;
   letter-spacing: .3px;
 }
 
 .control.soft .hint {
   display: block;
-  margin-top: 4px;
-  font-size: 10px;
+  margin-top: 3px;
+  font-size: 9px;
   color: var(--warning);
   font-weight: 950;
   letter-spacing: .5px;
@@ -286,7 +285,7 @@ canvas {
 .overlay {
   position: absolute;
   inset: 10px;
-  border-radius: 20px;
+  border-radius: 18px;
   background: rgba(0,0,0,.42);
   backdrop-filter: blur(10px);
   display: none;
@@ -337,94 +336,82 @@ canvas {
 }
 
 .footer-note {
-  text-align: center;
-  color: var(--muted);
-  font-size: 10.5px;
-  font-weight: 800;
+  display: none;
+}
+
+@media (max-height: 780px) {
+  .header {
+    display: none;
+  }
+
+  .app {
+    gap: 7px;
+    padding-top: max(7px, env(safe-area-inset-top));
+    padding-bottom: max(7px, env(safe-area-inset-bottom));
+  }
+
+  .stat {
+    min-height: 48px;
+  }
+
+  .control {
+    height: 56px;
+  }
+
+  .control.soft {
+    height: 50px;
+  }
+
+  .small-btn {
+    height: 36px;
+  }
+
+  .rotate-side {
+    height: 60px;
+  }
 }
 
 @media (max-width: 370px) {
   .app {
     padding-left: 10px;
     padding-right: 10px;
-    gap: 8px;
   }
 
   .game-area {
-    grid-template-columns: 1fr 84px;
-    gap: 8px;
-  }
-
-  .stat {
-    min-height: 54px;
-    padding: 9px 10px;
-  }
-
-  .title {
-    font-size: 24px;
+    grid-template-columns: auto 82px;
   }
 
   .control {
-    height: 66px;
-    border-radius: 22px;
+    height: 54px;
   }
 
-  .rotate-card {
-    margin-top: 116px;
+  .control.soft {
+    height: 48px;
   }
 
-  .rotate-side {
-    height: 68px;
-    font-size: 30px;
-  }
-}
-
-@media (max-height: 760px) {
-  .app {
-    gap: 8px;
-  }
-
-  .title-wrap {
-    display: none;
-  }
-
-  .header {
-    display: none;
-  }
-
-  .stat {
-    min-height: 54px;
-  }
-
-  .control {
-    height: 64px;
-  }
-
-  .rotate-card {
-    margin-top: 96px;
+  .small-btn {
+    height: 34px;
+    font-size: 11px;
   }
 
   .rotate-side {
-    height: 64px;
-  }
-
-  .footer-note {
-    display: none;
+    height: 56px;
+    font-size: 28px;
   }
 }
 </style>
 </head>
 
 <body>
-<div class="app">
-  <header class="header">
+<div class="app" id="app">
+  <header class="header" id="header">
     <div class="title-wrap">
       <div class="title">Block Drop</div>
       <div class="subtitle">Minimal falling block game</div>
     </div>
   </header>
 
-  <section class="stats">
+  <section class="stats" id="stats">
     <div class="stat">
       <div class="label">Score</div>
       <div class="value" id="score">0</div>
@@ -439,7 +426,7 @@ canvas {
     </div>
   </section>
 
-  <main class="game-area">
+  <main class="game-area" id="gameArea">
     <section class="board-card" id="touchZone">
       <canvas id="board"></canvas>
 
@@ -453,7 +440,7 @@ canvas {
       </div>
     </section>
 
-    <aside class="side">
+    <aside class="side" id="side">
       <div class="next-card">
         <div class="next-title">Next</div>
         <canvas id="next"></canvas>
@@ -471,7 +458,7 @@ canvas {
     </aside>
   </main>
 
-  <section class="controls">
+  <section class="controls" id="controls">
     <div class="move-row">
       <button class="control" data-action="left">←</button>
       <button class="control" data-action="right">→</button>
@@ -492,6 +479,13 @@ canvas {
 (() => {
   const COLS = 10;
   const ROWS = 20;
+
+  const app = document.getElementById("app");
+  const header = document.getElementById("header");
+  const stats = document.getElementById("stats");
+  const controls = document.getElementById("controls");
+  const gameArea = document.getElementById("gameArea");
+  const side = document.getElementById("side");
 
   const canvas = document.getElementById("board");
   const ctx = canvas.getContext("2d");
@@ -536,62 +530,13 @@ canvas {
   refreshColors();
 
   const SHAPES = [
-    {
-      name: "I",
-      matrix: [
-        [0,0,0,0],
-        [1,1,1,1],
-        [0,0,0,0],
-        [0,0,0,0]
-      ]
-    },
-    {
-      name: "O",
-      matrix: [
-        [2,2],
-        [2,2]
-      ]
-    },
-    {
-      name: "S",
-      matrix: [
-        [0,3,3],
-        [3,3,0],
-        [0,0,0]
-      ]
-    },
-    {
-      name: "Z",
-      matrix: [
-        [4,4,0],
-        [0,4,4],
-        [0,0,0]
-      ]
-    },
-    {
-      name: "T",
-      matrix: [
-        [0,5,0],
-        [5,5,5],
-        [0,0,0]
-      ]
-    },
-    {
-      name: "L",
-      matrix: [
-        [0,0,6],
-        [6,6,6],
-        [0,0,0]
-      ]
-    },
-    {
-      name: "J",
-      matrix: [
-        [7,0,0],
-        [7,7,7],
-        [0,0,0]
-      ]
-    }
+    { name: "I", matrix: [[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]] },
+    { name: "O", matrix: [[2,2],[2,2]] },
+    { name: "S", matrix: [[0,3,3],[3,3,0],[0,0,0]] },
+    { name: "Z", matrix: [[4,4,0],[0,4,4],[0,0,0]] },
+    { name: "T", matrix: [[0,5,0],[5,5,5],[0,0,0]] },
+    { name: "L", matrix: [[0,0,6],[6,6,6],[0,0,0]] },
+    { name: "J", matrix: [[7,0,0],[7,7,7],[0,0,0]] }
   ];
 
   let board = [];
@@ -620,7 +565,6 @@ canvas {
   }
 
   function cloneMatrix(matrix) {
-    if (!matrix || !Array.isArray(matrix)) return [];
     return matrix.map(row => row.slice());
   }
 
@@ -663,30 +607,51 @@ canvas {
     bestEl.textContent = best;
   }
 
+  function getViewportHeight() {
+    return window.visualViewport ? window.visualViewport.height : window.innerHeight;
+  }
+
   function resizeCanvas() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    let boardWidth = canvas.clientWidth;
+    const appStyle = getComputedStyle(app);
+    const paddingTop = parseFloat(appStyle.paddingTop) || 0;
+    const paddingBottom = parseFloat(appStyle.paddingBottom) || 0;
 
-    if (!boardWidth || boardWidth < 100) {
-      boardWidth = Math.min(window.innerWidth - 124, 300);
-      if (boardWidth < 180) boardWidth = 260;
-    }
+    const viewportH = getViewportHeight();
 
-    const boardHeight = boardWidth * 2;
+    const headerH = header.offsetParent ? header.offsetHeight : 0;
+    const statsH = stats.offsetHeight;
+    const controlsH = controls.offsetHeight;
 
-    canvas.style.height = boardHeight + "px";
-    canvas.width = Math.floor(boardWidth * dpr);
-    canvas.height = Math.floor(boardHeight * dpr);
+    const fixedGap = 8 * 3;
+    const availableOuterH = viewportH - paddingTop - paddingBottom - headerH - statsH - controlsH - fixedGap;
+
+    const sideW = side.offsetWidth || 92;
+    const areaW = app.clientWidth;
+    const gap = 8;
+
+    const maxCanvasWByWidth = areaW - sideW - gap - 20;
+    const maxCanvasWByHeight = (availableOuterH - 20) / 2;
+
+    let canvasW = Math.floor(Math.min(maxCanvasWByWidth, maxCanvasWByHeight));
+    canvasW = Math.max(185, Math.min(canvasW, 292));
+
+    const canvasH = canvasW * 2;
+
+    touchZone.style.width = `${canvasW + 20}px`;
+    touchZone.style.height = `${canvasH + 20}px`;
+
+    gameArea.style.height = `${canvasH + 20}px`;
+
+    canvas.style.width = `${canvasW}px`;
+    canvas.style.height = `${canvasH}px`;
+    canvas.width = Math.floor(canvasW * dpr);
+    canvas.height = Math.floor(canvasH * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    let nextSize = nextCanvas.clientWidth;
-
-    if (!nextSize || nextSize < 50) {
-      nextSize = 76;
-    }
-
-    nextCanvas.style.height = nextSize + "px";
+    const nextSize = nextCanvas.clientWidth || 72;
+    nextCanvas.style.height = `${nextSize}px`;
     nextCanvas.width = Math.floor(nextSize * dpr);
     nextCanvas.height = Math.floor(nextSize * dpr);
     nextCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -698,8 +663,6 @@ canvas {
     if (!testPiece || !testPiece.matrix) return false;
 
     const testMatrix = matrix || testPiece.matrix;
-
-    if (!testMatrix || !Array.isArray(testMatrix)) return false;
 
     for (let y = 0; y < testMatrix.length; y++) {
       for (let x = 0; x < testMatrix[y].length; x++) {
@@ -734,8 +697,6 @@ canvas {
   }
 
   function rotateMatrix(matrix) {
-    if (!matrix || !Array.isArray(matrix) || !matrix.length) return matrix;
-
     const N = matrix.length;
     const result = Array.from({ length: N }, () => Array(N).fill(0));
 
@@ -875,8 +836,6 @@ canvas {
   }
 
   function clearLines(rows) {
-    if (!rows || !rows.length) return;
-
     rows.sort((a, b) => a - b);
 
     for (const row of rows) {
@@ -887,10 +846,6 @@ canvas {
 
   function spawnPiece() {
     piece = nextPiece || randomPiece();
-
-    if (!piece.matrix || !piece.matrix.length) {
-      piece = randomPiece();
-    }
 
     piece.x = Math.floor(COLS / 2) - Math.ceil(piece.matrix[0].length / 2);
     piece.y = -1;
@@ -1003,14 +958,14 @@ canvas {
     drawGrid(ctx, w, h, cell);
 
     if (board && board.length) {
-      drawMatrix(ctx, board, 0, 0, cell, true);
+      drawMatrix(ctx, board, 0, 0, cell);
     }
 
     if (piece && piece.matrix && !gameOver) {
       const ghost = getGhostPiece();
 
       if (ghost && ghost.matrix) {
-        drawMatrix(ctx, ghost.matrix, ghost.x, ghost.y, cell, false, true);
+        drawMatrix(ctx, ghost.matrix, ghost.x, ghost.y, cell, true);
       }
 
       drawMatrix(ctx, piece.matrix, piece.x, piece.y, cell, false);
@@ -1051,7 +1006,7 @@ canvas {
     context.restore();
   }
 
-  function drawMatrix(context, matrix, offsetX, offsetY, cell, isBoard = false, ghost = false) {
+  function drawMatrix(context, matrix, offsetX, offsetY, cell, ghost = false) {
     if (!context || !matrix || !Array.isArray(matrix) || !matrix.length) return;
 
     for (let y = 0; y < matrix.length; y++) {
@@ -1108,9 +1063,6 @@ canvas {
     if (!nextPiece || !nextPiece.matrix || !Array.isArray(nextPiece.matrix)) return;
 
     const matrix = nextPiece.matrix;
-
-    if (!matrix.length) return;
-
     const size = matrix.length;
     const cell = Math.min(w, h) / 4.6;
     const offsetX = (w - size * cell) / 2;
@@ -1341,6 +1293,10 @@ canvas {
   });
 
   window.addEventListener("resize", resizeCanvas);
+
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", resizeCanvas);
+  }
 
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
     refreshColors();
